@@ -1,0 +1,17 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Compiled Java files
+*.class
+out/
+build/
+target/
+
+# macOS
+.DS_Store
+
+# Environment and secrets
+.env
+.env.*
+
