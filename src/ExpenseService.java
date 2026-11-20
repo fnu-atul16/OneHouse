@@ -84,6 +84,25 @@ public class ExpenseService {
         return total;
     }
 
+    public BigDecimal  getMonthlyPaidByMember(String memberId, int year,int month){
+        BigDecimal total = BigDecimal.ZERO;
+        if(memberId==null || memberId.isBlank()){
+            throw new IllegalArgumentException("Not valid");
+        }
+        if(month<1 || month>12){
+            throw new IllegalArgumentException("Not valid month");
+        }
+        for(Expense expense: expenses.values()){
+            int expenseMonth = expense.getExpenseDate().getMonthValue();
+            int expenseYear = expense.getExpenseDate().getYear();
+
+            if(memberId.equals(expense.getPaidByMemberId()) && expenseMonth == month && expenseYear == year){
+                total = total.add(expense.getAmount());
+            }
+        }
+        return total;
+    }
+
 
 
 
