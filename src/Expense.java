@@ -53,7 +53,10 @@
         public void setDescription(String description){
             if(description==null || description.isBlank()){
                 throw new IllegalArgumentException("Not valid");
-            } else{
+            }
+
+
+            else{
                 this.description = description;
             }
         }
@@ -63,9 +66,14 @@
                 throw new IllegalArgumentException("Not valid");
 
             }
-            else{
-                this.amount = amount;
+            if (amount.stripTrailingZeros().scale() > 2) {
+                throw new IllegalArgumentException(
+                        "Amount cannot have more than 2 decimal places"
+                );
             }
+
+                this.amount = amount;
+
         }
 
         //Getters
